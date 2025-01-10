@@ -4,7 +4,7 @@ const defaultSettings: StorageData['settings'] = {
   imageCaption: false,
   timeout: 30,
   cacheTimeout: 3600,
-  responseFormat: 'markdown',
+  responseFormat: 'markdown' as const,
   useProxy: false,
   proxyUrl: '',
   waitForSelector: '',

@@ -5,7 +5,7 @@ export interface StorageData {
     imageCaption: boolean;
     timeout: number;
     cacheTimeout: number;
-    responseFormat: ResponseFormat;
+    responseFormat: Exclude<ResponseFormat, 'json'>;
     useProxy: boolean;
     proxyUrl?: string;
     waitForSelector?: string;

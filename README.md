@@ -1,106 +1,75 @@
 # HTML to MD Render
 
-![HTML to MD Render Banner](images/HTML%20to%20MD%20Render%20Banner.png)
-
-> **Current Version**: v0.1.0-alpha - This is an alpha release, expect changes and improvements.
-
-A powerful Chrome extension that converts any webpage into clean, readable Markdown format with a single click. Built with modern web technologies and a beautiful, minimalist interface.
+A Chrome extension that converts any webpage to clean, readable Markdown format with a single click. Built on top of Jina AI's Reader API.
 
 ## Features
 
-- 🚀 Convert any webpage to Markdown instantly
-- 🎨 Clean, modern interface with Pico CSS v2
-- ⌨️ Keyboard shortcut support (Ctrl+Shift+M / Cmd+Shift+M)
-- 🔄 Context menu integration for easy access
-- ⚙️ Optional API key configuration
-- 🌙 Beautiful dark mode interface
-- 🎯 Focused on simplicity and usability
-
-## Version History
-
-- **v0.1.0-alpha** (Current)
-  - Initial alpha release
-  - Basic webpage to Markdown conversion
-  - Dark mode support
-  - API key configuration option
+- Convert webpages to clean Markdown with one click
+- Search selected text using Jina AI
+- Customize output format (Markdown, HTML, Text, Screenshot)
+- Enable image captions
+- Configure proxy and selectors
+- Keyboard shortcuts (Ctrl/Cmd + Shift + M)
 
 ## Installation
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/nerveband/html-to-md-render.git
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Build the extension:
-   ```bash
-   npm run build
-   ```
-
-4. Load in Chrome:
-   - Open Chrome and navigate to `chrome://extensions/`
-   - Enable "Developer mode" in the top right
-   - Click "Load unpacked"
-   - Select the `dist` directory from this project
-
-## Usage
-
-### Quick Access
-- Click the extension icon in your browser toolbar
-- Use the keyboard shortcut (Ctrl+Shift+M / Cmd+Shift+M)
-
-### Context Menu
-- Right-click on any webpage to convert it to Markdown
-- Right-click on selected text for specific content conversion
-- Right-click on links to convert linked pages
-
-### Settings
-- Toggle API key usage for enhanced features
-- Configure your API key (optional)
+1. Clone this repository
+2. Run `npm install`
+3. Run `npm run build`
+4. Load the `dist` folder as an unpacked extension in Chrome
 
 ## Development
 
-- Run in development mode with auto-reload:
-  ```bash
-  npm run dev
-  ```
+```bash
+npm install    # Install dependencies
+npm run watch  # Watch for changes
+npm run build  # Build for production
+```
 
-- Build for production:
-  ```bash
-  npm run build
-  ```
+## FAQ
+
+### Why use Jina Reader vs other HTML to Markdown solutions?
+
+While there are many HTML to Markdown converters available, Jina Reader offers several unique advantages:
+
+1. **Smart Content Extraction**: Unlike basic HTML scrapers, Jina Reader uses advanced algorithms to identify and extract the main content, removing clutter like ads, navigation, and footers.
+
+2. **Image Support**: Jina Reader can automatically generate captions for images using AI, making the content more accessible and informative.
+
+3. **Flexible Output**: Beyond just Markdown, you can get the content in various formats including HTML, plain text, or even screenshots.
+
+4. **Reliability**: Jina Reader handles dynamic content, JavaScript-rendered pages, and complex layouts that often break traditional converters.
+
+5. **API Integration**: Built on a production-grade API with high availability and scalability.
+
+### Can I customize the keyboard shortcuts?
+
+Yes! You can customize the keyboard shortcuts by:
+1. Going to Chrome's Extensions page (chrome://extensions)
+2. Clicking "Keyboard shortcuts" at the bottom
+3. Finding "HTML to MD Render" and setting your preferred shortcut
 
 ## Tech Stack
 
-- ⚛️ React for UI components
-- 🎨 Pico CSS v2 for minimal, semantic styling
-- 📝 TypeScript for type safety
-- 🛠️ Webpack for bundling
-- 🧪 Jest for testing
-
-## Color Scheme
-
-- Primary: `#ff6b35` (Orange)
-- Background: `#1a237e` (Deep Blue)
-- Text: `#ffffff` (White)
-- Accents: Various transparency levels of white
+- TypeScript
+- React
+- Material UI
+- Webpack
+- Chrome Extension APIs
+- Jina AI Reader API
 
 ## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT © Ashraf Ali
 
-## Author
+## Version History
 
-Created by [Ashraf Ali](https://ashrafali.net) 
+- 0.1.0-alpha: Initial release
+  - Basic webpage conversion
+  - Search functionality
+  - Advanced settings panel
+  - Keyboard shortcuts 

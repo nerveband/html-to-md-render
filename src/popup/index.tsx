@@ -1,6 +1,6 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
 import ReactDOM from 'react-dom';
-import { StorageData, Message, JinaRequestHeaders } from '../types';
+import { StorageData, Message, JinaRequestHeaders, ResponseFormat } from '../types';
 import '@picocss/pico';
 import './styles.css';
 
@@ -8,7 +8,7 @@ const defaultSettings: StorageData['settings'] = {
   imageCaption: false,
   timeout: 30,
   cacheTimeout: 3600,
-  responseFormat: 'markdown',
+  responseFormat: 'markdown' as const,
   useProxy: false,
   proxyUrl: '',
   waitForSelector: '',
@@ -145,12 +145,12 @@ const Popup: React.FC = () => {
               Response Format
               <select
                 value={settings.responseFormat}
-                onChange={(e) => setSettings({ ...settings, responseFormat: e.target.value as any })}
+                onChange={(e) => setSettings({ ...settings, responseFormat: e.target.value as Exclude<ResponseFormat, 'json'> })}
               >
                 <option value="markdown">Markdown</option>
                 <option value="html">HTML</option>
                 <option value="text">Text</option>
-                <option value="json">JSON</option>
+                <option value="screenshot">Screenshot</option>
               </select>
             </label>
 
