@@ -6,12 +6,10 @@
 }
 
 body {
-  width: 320px;
-  min-height: 300px;
+  width: 400px;
   margin: 0;
-  padding: 8px;
-  background: var(--background-color);
-  color: var(--color);
+  padding: 1rem;
+  background-color: var(--background-color);
 }
 
 #root {
@@ -52,4 +50,109 @@ button.primary:hover {
 
 input[type="checkbox"][role="switch"] {
   --color: var(--primary);
+}
+
+.popup-content {
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.header h3 {
+  margin: 0;
+  color: var(--primary);
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button-group a {
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.api-key-section {
+  margin-bottom: 1.5rem;
+}
+
+.switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.action-buttons {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.action-buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+
+.settings-summary,
+.help-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.settings-grid {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--background-color);
+  border-radius: 4px;
+}
+
+.help-content {
+  padding: 1rem;
+  background: var(--background-color);
+  border-radius: 4px;
+}
+
+.help-content p {
+  margin-bottom: 1rem;
+}
+
+.save-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--background-color);
+  }
+  
+  .popup-content {
+    background-color: var(--card-background-color);
+  }
 } 

@@ -1,4 +1,4 @@
-![HTML to MD Render](public/banner/HTML%20to%20MD%20Render%20Banner.png)
+![HTML to MD Render](public/banner.png)
 
 # HTML to MD Render
 
@@ -7,14 +7,17 @@
 **Version**: v0.1.0-alpha  
 **Status**: Alpha release - Expect changes and improvements  
 **Author**: [Ashraf Ali](https://ashrafali.net)  
-**License**: [MIT](LICENSE)
+**License**: [MIT](LICENSE)  
+**Download**: [Latest Release](https://github.com/nerveband/html-to-md-render/releases/latest)
 
 ## 🚀 Quick Start
 
-1. Install the extension from Chrome Web Store (coming soon)
-2. Click the extension icon or press `Ctrl/Cmd + Shift + M`
-3. Click "Convert to Markdown" for the current page
-4. Or select text and click "Search" to find related content
+1. Download the latest release from [GitHub Releases](https://github.com/nerveband/html-to-md-render/releases/latest)
+2. Unzip the downloaded file
+3. Open Chrome and go to `chrome://extensions`
+4. Enable "Developer mode"
+5. Click "Load unpacked" and select the unzipped folder
+6. Click the extension icon or press `Ctrl/Cmd + Shift + M`
 
 ## 🎯 Core Features
 

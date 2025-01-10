@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { StorageData, Message, JinaRequestHeaders, ResponseFormat } from '../types';
 import '@picocss/pico';
 import './styles.css';
+import { FiBook, FiSettings, FiHelpCircle, FiGithub, FiSave, FiSearch, FiFileText, FiKey } from 'react-icons/fi';
 
 const defaultSettings: StorageData['settings'] = {
   imageCaption: false,
@@ -97,56 +98,56 @@ const Popup: React.FC = () => {
 
   return (
     <main className="container">
-      <article>
-        <header>
+      <article className="popup-content">
+        <header className="header">
           <h3>HTML to MD Render</h3>
-          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
-            <button onClick={handleHelp} className="outline secondary">
-              Documentation
-            </button>
-            <button onClick={handleKeyboardShortcuts} className="outline secondary">
-              Customize Shortcuts
-            </button>
+          <div className="button-group">
+            <a href="https://jina.ai/reader" target="_blank" rel="noopener noreferrer" className="outline" title="Documentation">
+              <FiBook />
+            </a>
+            <a href="https://github.com/nerveband/html-to-md-render" target="_blank" rel="noopener noreferrer" className="outline" title="GitHub Repository">
+              <FiGithub />
+            </a>
+            <a href="chrome://extensions/shortcuts" target="_blank" rel="noopener noreferrer" className="outline" title="Customize Shortcuts">
+              <FiSettings />
+            </a>
           </div>
         </header>
 
-        <div className="grid">
-          <label>
+        <div className="api-key-section">
+          <label className="switch-wrapper">
             <input
               type="checkbox"
               role="switch"
               checked={useApiKey}
               onChange={(e: ChangeEvent<HTMLInputElement>) => setUseApiKey(e.target.checked)}
             />
-            Use API Key
+            <FiKey /> Use API Key
           </label>
-        </div>
-
-        {useApiKey && (
-          <div className="grid">
+          {useApiKey && (
             <input
               type="password"
               placeholder="Enter API Key"
               value={apiKey}
               onChange={(e: ChangeEvent<HTMLInputElement>) => setApiKey(e.target.value)}
             />
-          </div>
-        )}
+          )}
+        </div>
 
-        <div className="grid">
+        <div className="action-buttons">
           <button onClick={handleConvertPage} className="primary">
-            Convert to Markdown
+            <FiFileText /> Convert to Markdown
           </button>
           <button onClick={handleSearch} className="secondary">
-            Search Selected Text
+            <FiSearch /> Search Selected Text
           </button>
         </div>
 
         <details>
-          <summary role="button" className="secondary outline" onClick={() => setShowAdvanced(!showAdvanced)}>
-            Advanced Settings
+          <summary role="button" className="secondary outline settings-summary">
+            <FiSettings /> Advanced Settings
           </summary>
-          <div className="grid">
+          <div className="settings-grid">
             <label>
               <input
                 type="checkbox"
@@ -227,10 +228,10 @@ const Popup: React.FC = () => {
         </details>
 
         <details>
-          <summary role="button" className="secondary outline">
-            Help & Usage
+          <summary role="button" className="secondary outline help-summary">
+            <FiHelpCircle /> Help & Usage
           </summary>
-          <div className="grid">
+          <div className="help-content">
             <p>
               <strong>Quick Start:</strong><br/>
               1. Click the extension icon or use Ctrl/Cmd + Shift + M<br/>
@@ -252,11 +253,9 @@ const Popup: React.FC = () => {
           </div>
         </details>
 
-        <div className="grid">
-          <button onClick={handleSaveSettings} className="secondary outline">
-            Save Settings
-          </button>
-        </div>
+        <button onClick={handleSaveSettings} className="save-button">
+          <FiSave /> Save Settings
+        </button>
       </article>
     </main>
   );
