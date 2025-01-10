@@ -1,5 +1,9 @@
 # HTML to MD Render
 
+![HTML to MD Render Banner](public/icons/icon.png)
+
+> **Current Version**: v0.1.0-alpha - This is an alpha release, expect changes and improvements.
+
 A Chrome extension that converts any webpage to clean, readable Markdown format with a single click. Built on top of Jina AI's Reader API.
 
 ## Features
@@ -44,16 +48,22 @@ While there are many HTML to Markdown converters available, Jina Reader offers s
 
 ### Can I customize the keyboard shortcuts?
 
-Yes! You can customize the keyboard shortcuts by:
-1. Going to Chrome's Extensions page (chrome://extensions)
-2. Clicking "Keyboard shortcuts" at the bottom
-3. Finding "HTML to MD Render" and setting your preferred shortcut
+Yes! The extension makes it easy to customize shortcuts:
+
+1. Click the extension icon in your browser
+2. Click the "Customize Shortcuts" button
+3. Set your preferred keyboard combination
+
+Or manually:
+1. Go to Chrome's Extensions page (chrome://extensions)
+2. Click "Keyboard shortcuts" at the bottom
+3. Find "HTML to MD Render" and set your preferred shortcut
 
 ## Tech Stack
 
 - TypeScript
 - React
-- Material UI
+- Pico CSS (Blue Theme)
 - Webpack
 - Chrome Extension APIs
 - Jina AI Reader API
@@ -64,7 +74,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-MIT © Ashraf Ali
+[MIT License](LICENSE) © [Ashraf Ali](https://ashrafali.net)
 
 ## Version History
 

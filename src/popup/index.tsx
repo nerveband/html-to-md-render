@@ -87,11 +87,27 @@ const Popup: React.FC = () => {
     );
   };
 
+  const handleHelp = () => {
+    window.open('https://jina.ai/reader', '_blank');
+  };
+
+  const handleKeyboardShortcuts = () => {
+    chrome.tabs.create({ url: 'chrome://extensions/shortcuts' });
+  };
+
   return (
     <main className="container">
       <article>
         <header>
           <h3>HTML to MD Render</h3>
+          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
+            <button onClick={handleHelp} className="outline secondary">
+              Documentation
+            </button>
+            <button onClick={handleKeyboardShortcuts} className="outline secondary">
+              Customize Shortcuts
+            </button>
+          </div>
         </header>
 
         <div className="grid">
@@ -207,6 +223,32 @@ const Popup: React.FC = () => {
               value={settings.targetSelector}
               onChange={(e) => setSettings({ ...settings, targetSelector: e.target.value })}
             />
+          </div>
+        </details>
+
+        <details>
+          <summary role="button" className="secondary outline">
+            Help & Usage
+          </summary>
+          <div className="grid">
+            <p>
+              <strong>Quick Start:</strong><br/>
+              1. Click the extension icon or use Ctrl/Cmd + Shift + M<br/>
+              2. Click "Convert to Markdown" for the current page<br/>
+              3. Or select text and click "Search" to find related content
+            </p>
+            <p>
+              <strong>Features:</strong><br/>
+              • Smart content extraction<br/>
+              • Image caption generation<br/>
+              • Multiple output formats<br/>
+              • Advanced customization options
+            </p>
+            <p>
+              <a href="https://jina.ai/reader" target="_blank" rel="noopener noreferrer">
+                Learn more about Jina Reader →
+              </a>
+            </p>
           </div>
         </details>
 
