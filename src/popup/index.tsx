@@ -1,19 +1,33 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
 import ReactDOM from 'react-dom';
-import { StorageData, Message } from '../types';
+import { StorageData, Message, JinaRequestHeaders } from '../types';
 import '@picocss/pico';
 import './styles.css';
+
+const defaultSettings: StorageData['settings'] = {
+  imageCaption: false,
+  timeout: 30,
+  cacheTimeout: 3600,
+  responseFormat: 'markdown',
+  useProxy: false,
+  proxyUrl: '',
+  waitForSelector: '',
+  targetSelector: ''
+};
 
 const Popup: React.FC = () => {
   const [apiKey, setApiKey] = useState<string>('');
   const [useApiKey, setUseApiKey] = useState<boolean>(false);
   const [currentUrl, setCurrentUrl] = useState<string>('');
+  const [settings, setSettings] = useState<StorageData['settings']>(defaultSettings);
+  const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
 
   useEffect(() => {
     // Load saved settings
-    chrome.storage.sync.get(['apiKey', 'useApiKey']).then((result: { [key: string]: any }) => {
+    chrome.storage.sync.get(['apiKey', 'useApiKey', 'settings']).then((result: Partial<StorageData>) => {
       setApiKey(result.apiKey || '');
       setUseApiKey(result.useApiKey || false);
+      setSettings(result.settings || defaultSettings);
     });
 
     // Get current tab URL
@@ -25,23 +39,52 @@ const Popup: React.FC = () => {
   }, []);
 
   const handleSaveSettings = () => {
-    const settings: StorageData = {
+    const storageData: StorageData = {
       apiKey,
-      useApiKey
+      useApiKey,
+      settings
     };
 
-    chrome.storage.sync.set(settings).then(() => {
+    chrome.storage.sync.set(storageData).then(() => {
       // Notify background script of settings change
       const message: Message = { type: 'SETTINGS_UPDATED' };
       chrome.runtime.sendMessage(message);
     });
   };
 
-  const handleReadPage = () => {
+  const handleConvertPage = () => {
     if (currentUrl) {
-      const readerUrl = `https://r.jina.ai/${currentUrl}`;
+      const headers: JinaRequestHeaders = {
+        'x-with-generated-alt': settings.imageCaption ? 'true' : undefined,
+        'x-respond-with': settings.responseFormat,
+        'x-timeout': settings.timeout.toString(),
+        'x-cache-tolerance': settings.cacheTimeout.toString(),
+        'x-proxy-url': settings.useProxy ? settings.proxyUrl : undefined,
+        'x-target-selector': settings.targetSelector || undefined,
+        'x-wait-for-selector': settings.waitForSelector || undefined
+      };
+
+      const queryParams = new URLSearchParams();
+      if (useApiKey && apiKey) {
+        queryParams.set('api_key', apiKey);
+      }
+
+      const readerUrl = `https://r.jina.ai/${currentUrl}?${queryParams.toString()}`;
       window.open(readerUrl, '_blank');
     }
+  };
+
+  const handleSearch = () => {
+    chrome.tabs.sendMessage(
+      chrome.tabs.TAB_ID_NONE,
+      { type: 'GET_SELECTED_TEXT' },
+      (response: { selectedText?: string }) => {
+        if (response?.selectedText) {
+          const searchUrl = `https://s.jina.ai/${encodeURIComponent(response.selectedText)}`;
+          window.open(searchUrl, '_blank');
+        }
+      }
+    );
   };
 
   return (
@@ -75,9 +118,99 @@ const Popup: React.FC = () => {
         )}
 
         <div className="grid">
-          <button onClick={handleReadPage} className="primary">
+          <button onClick={handleConvertPage} className="primary">
             Convert to Markdown
           </button>
+          <button onClick={handleSearch} className="secondary">
+            Search Selected Text
+          </button>
+        </div>
+
+        <details>
+          <summary role="button" className="secondary outline" onClick={() => setShowAdvanced(!showAdvanced)}>
+            Advanced Settings
+          </summary>
+          <div className="grid">
+            <label>
+              <input
+                type="checkbox"
+                role="switch"
+                checked={settings.imageCaption}
+                onChange={(e) => setSettings({ ...settings, imageCaption: e.target.checked })}
+              />
+              Enable Image Captions
+            </label>
+
+            <label>
+              Response Format
+              <select
+                value={settings.responseFormat}
+                onChange={(e) => setSettings({ ...settings, responseFormat: e.target.value as any })}
+              >
+                <option value="markdown">Markdown</option>
+                <option value="html">HTML</option>
+                <option value="text">Text</option>
+                <option value="json">JSON</option>
+              </select>
+            </label>
+
+            <label>
+              Timeout (seconds)
+              <input
+                type="number"
+                value={settings.timeout}
+                onChange={(e) => setSettings({ ...settings, timeout: parseInt(e.target.value) })}
+                min="0"
+                max="120"
+              />
+            </label>
+
+            <label>
+              Cache Timeout (seconds)
+              <input
+                type="number"
+                value={settings.cacheTimeout}
+                onChange={(e) => setSettings({ ...settings, cacheTimeout: parseInt(e.target.value) })}
+                min="0"
+              />
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                role="switch"
+                checked={settings.useProxy}
+                onChange={(e) => setSettings({ ...settings, useProxy: e.target.checked })}
+              />
+              Use Proxy
+            </label>
+
+            {settings.useProxy && (
+              <input
+                type="url"
+                placeholder="Proxy URL"
+                value={settings.proxyUrl}
+                onChange={(e) => setSettings({ ...settings, proxyUrl: e.target.value })}
+              />
+            )}
+
+            <input
+              type="text"
+              placeholder="Wait for Selector (e.g., #content)"
+              value={settings.waitForSelector}
+              onChange={(e) => setSettings({ ...settings, waitForSelector: e.target.value })}
+            />
+
+            <input
+              type="text"
+              placeholder="Target Selector (e.g., .main-content)"
+              value={settings.targetSelector}
+              onChange={(e) => setSettings({ ...settings, targetSelector: e.target.value })}
+            />
+          </div>
+        </details>
+
+        <div className="grid">
           <button onClick={handleSaveSettings} className="secondary outline">
             Save Settings
           </button>
