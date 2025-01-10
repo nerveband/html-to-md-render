@@ -1,85 +1,92 @@
+![HTML to MD Render](public/banner/HTML%20to%20MD%20Render%20Banner.png)
+
 # HTML to MD Render
 
-![HTML to MD Render Banner](public/icons/icon.png)
+> Convert any webpage to clean, readable Markdown with a single click.
 
-> **Current Version**: v0.1.0-alpha - This is an alpha release, expect changes and improvements.
+**Version**: v0.1.0-alpha  
+**Status**: Alpha release - Expect changes and improvements  
+**Author**: [Ashraf Ali](https://ashrafali.net)  
+**License**: [MIT](LICENSE)
 
-A Chrome extension that converts any webpage to clean, readable Markdown format with a single click. Built on top of Jina AI's Reader API.
+## 🚀 Quick Start
 
-## Features
+1. Install the extension from Chrome Web Store (coming soon)
+2. Click the extension icon or press `Ctrl/Cmd + Shift + M`
+3. Click "Convert to Markdown" for the current page
+4. Or select text and click "Search" to find related content
 
-- Convert webpages to clean Markdown with one click
-- Search selected text using Jina AI
-- Customize output format (Markdown, HTML, Text, Screenshot)
-- Enable image captions
-- Configure proxy and selectors
-- Keyboard shortcuts (Ctrl/Cmd + Shift + M)
+## 🎯 Core Features
 
-## Installation
+- **One-Click Conversion**: Transform any webpage to clean Markdown instantly
+- **Smart Content Extraction**: Automatically removes ads, navigation, and clutter
+- **Image Support**: Optional AI-powered image caption generation
+- **Multiple Formats**: Export as Markdown, HTML, Text, or Screenshot
+- **Keyboard Shortcuts**: Quick access with customizable shortcuts
+- **Search Integration**: Search selected text using Jina AI
 
-1. Clone this repository
-2. Run `npm install`
-3. Run `npm run build`
-4. Load the `dist` folder as an unpacked extension in Chrome
-
-## Development
+## 🛠️ Installation (Development)
 
 ```bash
-npm install    # Install dependencies
-npm run watch  # Watch for changes
-npm run build  # Build for production
+# Clone the repository
+git clone https://github.com/nerveband/html-to-md-render.git
+
+# Install dependencies
+npm install
+
+# Build for production
+npm run build
+
+# Load in Chrome:
+1. Open chrome://extensions
+2. Enable "Developer mode"
+3. Click "Load unpacked"
+4. Select the 'dist' folder
 ```
 
-## FAQ
+## 💡 Usage Guide
 
-### Why use Jina Reader vs other HTML to Markdown solutions?
+### Basic Usage
+1. Navigate to any webpage
+2. Click the extension icon
+3. Choose "Convert to Markdown"
 
-While there are many HTML to Markdown converters available, Jina Reader offers several unique advantages:
+### Advanced Features
+- **Image Captions**: Enable in settings to add AI-generated captions
+- **Custom Selectors**: Target specific page elements
+- **Proxy Support**: Configure for restricted sites
+- **Format Options**: Choose between Markdown, HTML, Text, or Screenshot
 
-1. **Smart Content Extraction**: Unlike basic HTML scrapers, Jina Reader uses advanced algorithms to identify and extract the main content, removing clutter like ads, navigation, and footers.
+### Keyboard Shortcuts
+1. Open Chrome Extensions (chrome://extensions/shortcuts)
+2. Find "HTML to MD Render"
+3. Set your preferred shortcut (default: Ctrl/Cmd + Shift + M)
 
-2. **Image Support**: Jina Reader can automatically generate captions for images using AI, making the content more accessible and informative.
+## 🔧 Development
 
-3. **Flexible Output**: Beyond just Markdown, you can get the content in various formats including HTML, plain text, or even screenshots.
+```bash
+# Watch for changes
+npm run watch
 
-4. **Reliability**: Jina Reader handles dynamic content, JavaScript-rendered pages, and complex layouts that often break traditional converters.
+# Build for production
+npm run build
 
-5. **API Integration**: Built on a production-grade API with high availability and scalability.
+# Run tests
+npm test
+```
 
-### Can I customize the keyboard shortcuts?
+## 🤝 Contributing
 
-Yes! The extension makes it easy to customize shortcuts:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-1. Click the extension icon in your browser
-2. Click the "Customize Shortcuts" button
-3. Set your preferred keyboard combination
-
-Or manually:
-1. Go to Chrome's Extensions page (chrome://extensions)
-2. Click "Keyboard shortcuts" at the bottom
-3. Find "HTML to MD Render" and set your preferred shortcut
-
-## Tech Stack
-
-- TypeScript
-- React
-- Pico CSS (Blue Theme)
-- Webpack
-- Chrome Extension APIs
-- Jina AI Reader API
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
+## 📝 License
 
 [MIT License](LICENSE) © [Ashraf Ali](https://ashrafali.net)
 
-## Version History
+---
 
-- 0.1.0-alpha: Initial release
-  - Basic webpage conversion
-  - Search functionality
-  - Advanced settings panel
-  - Keyboard shortcuts 
+Powered by [Jina AI](https://jina.ai/reader) | [Report Issues](https://github.com/nerveband/html-to-md-render/issues) 
