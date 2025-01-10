@@ -1,8 +1,10 @@
-![HTML to MD Render](public/banner.png)
+![HTML to MD Render](public/banner/banner.png)
 
 # HTML to MD Render
 
-> Convert any webpage to clean, readable Markdown with a single click.
+> LLM-Ready Content from Any Website In Your Browser
+
+**POWERED BY JINA AI**
 
 **Version**: v0.1.0-alpha  
 **Status**: Alpha release - Expect changes and improvements  
