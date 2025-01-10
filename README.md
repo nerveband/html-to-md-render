@@ -28,7 +28,7 @@ A powerful Chrome extension that converts any webpage into clean, readable Markd
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/ashraf-ali-ca/html-to-md-render.git
+   git clone https://github.com/nerveband/html-to-md-render.git
    ```
 
 2. Install dependencies:

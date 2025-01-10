@@ -13,12 +13,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ashraf-ali-ca/html-to-md-render.git"
+    "url": "git+https://github.com/nerveband/html-to-md-render.git"
   },
   "bugs": {
-    "url": "https://github.com/ashraf-ali-ca/html-to-md-render/issues"
+    "url": "https://github.com/nerveband/html-to-md-render/issues"
   },
-  "homepage": "https://github.com/ashraf-ali-ca/html-to-md-render#readme",
+  "homepage": "https://github.com/nerveband/html-to-md-render#readme",
   "devDependencies": {
     "@types/chrome": "^0.0.260",
     "@types/jest": "^29.5.11",
